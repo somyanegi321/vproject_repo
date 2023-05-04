@@ -38,6 +38,7 @@ pipeline {
     }
     stage('Deploy'){
     steps{
+      sh "sed 's/tag/$BUILD_NUMBER/g' Deploymentfile.yaml > newdep.yaml"
       withCredentials([file(credentialsId: '4fab8129-f78a-413f-898e-cdf5cc5b701c', variable: 'kubernetesvars')]) {
     // some block
      sh 'sudo kubectl --kubeconfig=$kubernetesvars apply -f newdep.yaml'
