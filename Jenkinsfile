@@ -17,12 +17,18 @@ pipeline {
         sh 'python3 /var/lib/jenkins/workspace/firstpipe/VehicleParkingManagement/manage.py test'
       }
     }
-    stage('Deploy') {
+    stage('Create Artifacts') {
       steps{
           //sh 'pwd'
           //sh 'ls'
           //sh 'sudo usermod -aG docker jenkins'
-          sh 'sudo docker build -t testimage:${BUILD_NUMBER} .'
+         // sh 'sudo docker build -t somyanegi/testimage:${BUILD_NUMBER} .'
+          withCredentials([string(credentialsId: 'dockercreed', variable: 'dockerpassword')]) {
+    // som
+    sh 'sudo docker login -u somyanegi -p ${dockerpassword}'
+    sh 'sudo docker build -t somyanegi/testimage:${BUILD_NUMBER} .'
+    sh 'sudo docker push somyanegi/testimage:${BUILD_NUMBER}'
+}
           //sh 'sudo docker run -dp 4000:8000 testimage'
        
 
@@ -30,5 +36,13 @@ pipeline {
         
       }
     }
-  }
+    stage('kubernetes'){
+    steps{
+      withCredentials([file(credentialsId: '4fab8129-f78a-413f-898e-cdf5cc5b701c', variable: 'kubernetesvars')]) {
+    // some block
+     sh 'sudo kubectl --kubeconfig=$kubernetesvars get pods'
 }
+}
+}
+  }
+ }
