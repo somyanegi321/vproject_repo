@@ -11,7 +11,7 @@ pipeline {
     stage('Test') {
       steps{
         sh 'python3 /var/lib/jenkins/workspace/firstpipe/VehicleParkingManagement/manage.py test'
-        sh 'tar -cvzf tarfile.tar.gz VechicleParkingManagement'
+        sh 'tar -cvzf tarfile.tar.gz VehicleParkingManagement'
       }
     }
 //     stage('create image') {
