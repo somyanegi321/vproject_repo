@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+   name: deployment
+   labels: 
+     env: stat
+spec:
+   replicas: 1
+   selector:
+      matchLabels:
+         env: stat
+   template:
+      metadata:
+        name: pod
+        labels:
+          env: stat
+      spec:
+        containers:
+          - name: vcontainer
+            image: somyanegi/testimage:47
+           
