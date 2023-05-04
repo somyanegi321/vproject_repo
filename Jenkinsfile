@@ -17,7 +17,7 @@ pipeline {
 //         sh 'python3 /var/lib/jenkins/workspace/firstpipe/VehicleParkingManagement/manage.py test'
 //       }
 //     }
-    stage('Create Artifacts') {
+    stage('create a image') {
       steps{
           //sh 'pwd'
           //sh 'ls'
@@ -36,10 +36,12 @@ pipeline {
         
       }
     }
-    stage('kubernetes'){
+    stage('Deploy'){
     steps{
       withCredentials([file(credentialsId: '4fab8129-f78a-413f-898e-cdf5cc5b701c', variable: 'kubernetesvars')]) {
     // some block
+     sh 'sudo kubectl --kubeconfig=$kubernetesvars apply -f newdep.yaml'
+     sh 'sudo kubectl --kubeconfig=$kubernetesvars apply -f service.yaml'
      sh 'sudo kubectl --kubeconfig=$kubernetesvars get pods'
 }
 }
