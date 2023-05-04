@@ -7,16 +7,16 @@ pipeline {
       }
     }
     
-    stage('Build') {
-      steps{
-        sh 'pip install django==3.2'
-      }
-    }
-    stage('Test') {
-      steps{
-        sh 'python3 /var/lib/jenkins/workspace/firstpipe/VehicleParkingManagement/manage.py test'
-      }
-    }
+//     stage('Build') {
+//       steps{
+//         sh 'pip install django==3.2'
+//       }
+//     }
+//     stage('Test') {
+//       steps{
+//         sh 'python3 /var/lib/jenkins/workspace/firstpipe/VehicleParkingManagement/manage.py test'
+//       }
+//     }
     stage('Create Artifacts') {
       steps{
           //sh 'pwd'
