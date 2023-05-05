@@ -121,3 +121,4 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 #thing are going good 
+# nice well done
