@@ -121,3 +121,4 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 # hello my name is somyanegi
+# hello i tell you wrong name 
