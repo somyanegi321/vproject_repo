@@ -17,7 +17,7 @@ pipeline {
 //         sh 'python3 /var/lib/jenkins/workspace/firstpipe/VehicleParkingManagement/manage.py test'
 //       }
 //     }
-    stage('create a image') {
+    stage('Push image to Docker Hub') {
       steps{
           //sh 'pwd'
           //sh 'ls'
@@ -37,6 +37,9 @@ pipeline {
       }
     }
     stage('Deploy'){
+      when {
+        branch 'deploy'
+      }
     steps{
       sh "sed 's/tag/$BUILD_NUMBER/g' Deploymentfile.yaml > newdep.yaml"
       withCredentials([file(credentialsId: '4fab8129-f78a-413f-898e-cdf5cc5b701c', variable: 'kubernetesvars')]) {
