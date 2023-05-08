@@ -125,3 +125,4 @@ STATIC_URL = '/static/'
 # nice work
 # nice jdflkjhdflkjahlihdf
 # hello bro 
+# nice work
