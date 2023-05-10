@@ -38,6 +38,9 @@ pipeline {
       }
     }
     stage('push image to docker hub'){
+      when {
+          branch 'main'
+        }
       steps{
         sh 'sudo docker push somyanegi/testimage:${BUILD_NUMBER}'
         
