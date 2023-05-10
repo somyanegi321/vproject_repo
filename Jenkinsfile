@@ -39,7 +39,7 @@ pipeline {
     }
     stage('Deploy'){
       when {
-        branch 'deploy'
+        branch 'main'
       }
     steps{
       sh "sed 's/tag/$BUILD_NUMBER/g' Deploymentfile.yaml > newdep.yaml"
