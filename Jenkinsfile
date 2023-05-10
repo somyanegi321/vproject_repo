@@ -4,7 +4,7 @@ pipeline {
     stage('clone'){
     steps{
 
-      git branch: 'deploy', credentialsId: '123', url: 'https://github.com/somyanegi321/vproject_repo.git'
+      git branch: 'main', credentialsId: '123', url: 'https://github.com/somyanegi321/vproject_repo.git'
       }
     }
     
