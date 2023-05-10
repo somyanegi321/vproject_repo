@@ -53,4 +53,50 @@ pipeline {
 }
 
   }
+  post{
+        when{
+                branch 'main'
+            }
+        
+          
+        success{
+        
+        
+          
+            mail to: "somya.negi@knoldus.com",
+        
+        
+          
+            subject: "Build is successfull",
+        
+        
+          
+            body: "success"
+        
+        
+          
+        }
+        
+        
+          
+    failure{
+        
+        
+          
+      mail to: "somya.negi@knoldus.com",
+        
+        
+          
+            subject: "Build is failed",
+        
+        
+          
+            body: "failed"
+        
+        
+          
+    }
+        
+        
+            }
  }
