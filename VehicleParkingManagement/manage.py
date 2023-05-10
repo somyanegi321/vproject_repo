@@ -19,9 +19,4 @@ def main():
 
 if __name__ == '__main__':
     main()
-# hello
-# jaago jaago
-# good work
-# hello buddy 
-# nice work
-# nice woel 
+
