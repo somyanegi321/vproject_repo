@@ -18,7 +18,7 @@ pipeline {
 //         sh 'python3 /var/lib/jenkins/workspace/firstpipe/VehicleParkingManagement/manage.py test'
 //       }
 //     }
-    stage('Push image to Docker Hub') {
+    stage('creating image') {
       steps{
           //sh 'pwd'
           //sh 'ls'
@@ -28,12 +28,21 @@ pipeline {
     // som
     sh 'sudo docker login -u somyanegi -p ${dockerpassword}'
     sh 'sudo docker build -t somyanegi/testimage:${BUILD_NUMBER} .'
-    sh 'sudo docker push somyanegi/testimage:${BUILD_NUMBER}'
+ 
 }
           //sh 'sudo docker run -dp 4000:8000 testimage'
        
 
         //sh 'python3 /var/lib/jenkins/workspace/firstpipe/VehicleParkingManagement/manage.py runserver'
+        
+      }
+    }
+    stage('push image to docker hub'){
+      when {
+          branch 'main'
+        }
+      steps{
+        sh 'sudo docker push somyanegi/testimage:${BUILD_NUMBER}'
         
       }
     }
@@ -54,10 +63,6 @@ pipeline {
 
   }
   post{
-        when{
-                branch 'main'
-            }
-        
           
         success{
         
